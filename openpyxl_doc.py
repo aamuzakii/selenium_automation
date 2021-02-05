@@ -1,4 +1,5 @@
 # Python Openpyexcel Cheatsheet
+# $ pip install openpyxl
 
 import openpyxl
 

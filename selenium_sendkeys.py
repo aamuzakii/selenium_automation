@@ -29,3 +29,19 @@ print(main.text)
 time.sleep(5)
 
 driver.quit
+
+
+# below is not verified yet
+driver.back()
+element.clear()
+try:
+    main = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "main"))
+    )
+    
+    articles = main.find_elements_by_tag_name("article")
+    for article in articles:
+#         dibawah ini loncat langsung ke cucu 
+        header = article.find_element_by_class_name("entry-title")
+        print(header.text)
+
