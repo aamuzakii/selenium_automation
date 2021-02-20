@@ -1,0 +1,3 @@
+iframe = driver.find_elements_by_tag_name('iframe')[0]
+driver.switch_to_frame(iframe)
+imgs = driver.find_elements_by_tag_name('img')
