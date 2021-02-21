@@ -54,3 +54,7 @@ pivot[4]
 # 5656318                          3
 
 
+#####################################
+pd.pivot_table(df, values=[2], columns=[1], aggfunc='sum') #ini kayaknya lebih bener, ini bikin di rumah
+
+
