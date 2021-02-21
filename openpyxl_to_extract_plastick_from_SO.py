@@ -58,3 +58,6 @@ pivot[4]
 pd.pivot_table(df, values=[2], columns=[1], aggfunc='sum') #ini kayaknya lebih bener, ini bikin di rumah
 
 
+frames = [result, new_pivot]
+result = pd.concat(frames)
+
