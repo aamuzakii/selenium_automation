@@ -1,63 +1,30 @@
-# Python Openpyexcel Cheatsheet
-# $ pip install openpyxl
-
 import openpyxl
 import os
 import pandas as pd
 
 from openpyxl.utils.dataframe import dataframe_to_rows
+from cs50 import get_string
+from cs50 import get_int
 
 
+os.chdir(r'C:\Users\user\Documents')
 
-os.chdir(r'C:\Users\vivo\Downloads')
+file_number = get_int("How many: ")
 
-wb = openpyxl.load_workbook('Order 21.02.19  - 1 Shopee (POP) REG.xlsx')
+Files = []
+result = None
 
-sheet = wb['IDOS002-Shopee 1-10']
+for x in range(file_number):
+    file__name = get_string("File Name: ") + ".xlsx"
+    Files.append(file__name)
+    print(Files)
 
-# ws = wb.active
+for File in Files:
+    wb = openpyxl.load_workbook(File)
+    ws = wb['Sheet1']
 
-df = pd.DataFrame(ws.values)
-
-df.loc[2,2]
-# result: 5655037
-
-pivot
-# result
-#                                4
-# 2
-# 4851033                       18
-# 4851044                       18
-# 5469891                       13
-# 5654125                        1
-# 5655037                        1
-# 5655149                        2
-# 5655451                        1
-# 5655646                        2
-# 5656099                        1
-# 5656317                        7
-# 5656318                        3
-
-
-pivot[4]
-# 2
-# 4851033                         18
-# 4851044                         18
-# 5469891                         13
-# 5654125                          1
-# 5655037                          1
-# 5655149                          2
-# 5655451                          1
-# 5655646                          2
-# 5656099                          1
-# 5656317                          7
-# 5656318                          3
-
-
-#####################################
-pd.pivot_table(df, values=[2], columns=[1], aggfunc='sum') #ini kayaknya lebih bener, ini bikin di rumah
-
-
-frames = [result, new_pivot]
-result = pd.concat(frames)
-
+    df = pd.DataFrame(ws.values)
+    new_pivot = pd.pivot_table(df, values=[4], columns=[2], aggfunc='sum') 
+    frames = [result, new_pivot]
+    result = pd.concat(frames)
+    print(result)
