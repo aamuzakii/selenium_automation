@@ -26,9 +26,9 @@ def addapp():
         widget.destroy()
 
     filename = filedialog.askopenfilename(
-        initialdir="/", title="Select file", filetypes=(("executables", "*.exe"), ("all files", "*.*")))
+        initialdir='C:/Users', title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
     apps.append(filename)
-    print(apps)
+    print(filename)
     for app in apps:
         label = tk.Label(frame, text=app, bg="gray")
         label.pack()
@@ -68,6 +68,7 @@ def runapps():
     
     Outer_join = pd.merge(result, df2, on ='app', how ='outer') 
     Outer_join.to_excel(r'C:\Users\user\Documents\OuterJoin.xlsx')
+    os.startfile(r'C:\Users\user\Documents\OuterJoin.xlsx')
 
 
 canvas = tk.Canvas(root, height=700, width=700, bg="#263D42")
