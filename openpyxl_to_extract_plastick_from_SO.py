@@ -26,7 +26,7 @@ def addapp():
         widget.destroy()
 
     filename = filedialog.askopenfilename(
-        initialdir='C:/Users', title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
+        initialdir='C:/Users/user/Documents', title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
     apps.append(filename)
     print(filename)
     for app in apps:
@@ -48,6 +48,7 @@ def runapps():
         brand_new_df = pd.DataFrame(new_list)
         print(brand_new_df)
 
+        print(type(app))
         file_name = [app] 
         brand_new_df['app'] = file_name
 
