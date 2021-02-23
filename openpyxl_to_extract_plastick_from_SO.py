@@ -21,10 +21,8 @@ if os.path.isfile('save.txt'):
 
 
 def addapp():
-
     for widget in frame.winfo_children():
         widget.destroy()
-
     filename = filedialog.askopenfilename(
         initialdir='C:/Users/user/Documents', title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
     apps.append(filename)
@@ -36,40 +34,34 @@ def addapp():
 
 def runapps():
     result = None
-    os.chdir(r'C:\Users\user\Documents')
+    os.chdir(r'\\172.23.102.26\Users\User\Downloads')
     for app in apps:
         wb = openpyxl.load_workbook(app)
-        ws = wb['Sheet1']
-
+        ws = wb.active
         df = pd.DataFrame(ws.values)
         new_pivot = pd.pivot_table(df, values=[4], columns=[2], aggfunc='sum')
-
         new_list = new_pivot.to_dict(orient='list')
         brand_new_df = pd.DataFrame(new_list)
         print(brand_new_df)
-
         print(type(app))
+        stringx = app
+        urutanbs = stringx.index("/",34,37)
+        x = (len(stringx) - urutanbs - 1) * -1
+        app = stringx[x:]
         file_name = [app] 
         brand_new_df['app'] = file_name
-
         print(brand_new_df)
         print(" ")
-
         frames = [result, brand_new_df]
         result = pd.concat(frames)
-
     cars = {'app': ['Shopee1.xlsx','Shopee2.xlsx'],
             'BPM Number': [22000,25000]
             }
-
     df2 = pd.DataFrame(cars, columns = ['app', 'BPM Number'])
-
     print(df2)
-
-    
     Outer_join = pd.merge(result, df2, on ='app', how ='outer') 
-    Outer_join.to_excel(r'C:\Users\user\Documents\OuterJoin.xlsx')
-    os.startfile(r'C:\Users\user\Documents\OuterJoin.xlsx')
+    Outer_join.to_excel(r'C:\Users\vivo\Desktop\OuterJoin.xlsx')
+    os.startfile(r'C:\Users\vivo\Desktop\OuterJoin.xlsx')
 
 
 canvas = tk.Canvas(root, height=700, width=700, bg="#263D42")
