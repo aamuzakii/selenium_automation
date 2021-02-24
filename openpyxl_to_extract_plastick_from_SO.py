@@ -25,13 +25,16 @@ def addapp():
     
 
     filename = filedialog.askopenfilename(
-        initialdir='C:/Users/user/Documents', title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
+        initialdir='C:/Users/user/Documents', multiple=True, title="Select file", filetypes=(("excel", "*.xlsx"), ("all files", "*.*")))
     for widget in frame.winfo_children():
         widget.destroy()
-    apps.append(filename)
-    print(apps)
+    # print(type(filename))
+    # print(filename)
+    list_file = list(filename)
+    for file in list_file:
+            apps.append(file)
+    # print(apps)
     for app in apps:
-        app_only = app
         label = tk.Label(frame, text=app, bg="white", borderwidth=2, relief="groove")
         label.pack()
 
@@ -39,6 +42,7 @@ def addapp():
 def runapps():
     result = None
     os.chdir(r'C:\Users\user\Documents')
+    print(apps)
     for app in apps:
         wb = openpyxl.load_workbook(app)
         ws = wb['Sheet1']
@@ -62,6 +66,17 @@ def runapps():
         frames = [result, brand_new_df]
         result = pd.concat(frames)
 
+    # result_dict = result.to_dict(orient='list')
+
+    # filtered_dict = {}
+    # for (key, value) in result_dict.items():
+    #     if key == 4851044 or key == 4851005 or key == 4851033 or key == 'app':
+    #         filtered_dict[key] = value
+
+    # newDF = pd.DataFrame(filtered_dict)
+    # print(newDF)
+    newDF = result[[4851044,4851005,4851033,'app']]
+
     cars = {'app': ['Shopee1.xlsx','Shopee2.xlsx'],
             'BPM Number': [22000,25000]
             }
@@ -71,7 +86,7 @@ def runapps():
     print(df2)
 
     
-    Outer_join = pd.merge(result, df2, on ='app', how ='outer') 
+    Outer_join = pd.merge(newDF, df2, on ='app', how ='outer') 
     Outer_join.to_excel(r'C:\Users\user\Documents\OuterJoin.xlsx')
     os.startfile(r'C:\Users\user\Documents\OuterJoin.xlsx')
 
