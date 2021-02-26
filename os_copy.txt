@@ -1,0 +1,18 @@
+Syntax: shutil.move(source, destination, copy_function = copy2)
+
+Parameters:
+source: A string representing the path of the source file.
+destination: A string representing the path of the destination directory.
+copy_function (optional): The default value of this parameter is copy2. We can use other copy function like copy, copytree, etc for this parameter.
+
+Return Value: This method returns a string which represents the path of newly created file.
+
+
+
+##################
+import shutil
+
+original = r'original path where the file is currently stored\file name.file extension'
+target = r'target path where the file will be copied\file name.file extension'
+
+shutil.copyfile(original, target)
