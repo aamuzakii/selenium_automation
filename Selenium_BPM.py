@@ -68,23 +68,8 @@ def erase_space():
 def my_func():
 	driver.find_element_by_class_name('more-text').click()
 	doc_num = driver.find_elements_by_class_name('profile-span')[7].text
-	excel_name = driver.find_element_by_partial_link_text('Order').text
-    # print("a")
-    # print(type(excel_name))
-    # str_to_list = excel_name.split(' ')
-    # new_list = []
-    # def erase_space(variable): 
-        # if variable != '': 
-            # return True
-        # else: 
-            # return False
-    # filtered = filter(erase_space, str_to_list) 
-    # for s in filtered: 
-        # new_list.append(s)
-    # str1 = ""      
-    # for ele in new_list:  
-        # str1 += ele     
-    
+	excel_name = driver.find_element_by_partial_link_text('Order').text  
+	excel_name = erase_space(excel_name)
 	doc_nums.append(doc_num)
 	excel_names.append(excel_name)
 
